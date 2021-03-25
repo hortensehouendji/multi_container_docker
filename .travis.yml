@@ -22,3 +22,16 @@ after_success:
   - docker push hortensehouendji/multi-container-nginx
   - docker push hortensehouendji/multi-container-server
   - docker push hortensehouendji/multi-container-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-container-docker
+  env: Multicontainerdocker-env
+  bucket_name: elasticbeanstalk-us-east-1-899624289050
+  bucket_path: docker-container-multis
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: $AWS_SECRET_KEY
